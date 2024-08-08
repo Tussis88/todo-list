@@ -1,6 +1,7 @@
 import Todo from "./todos";
+import Project from "./projects";
 
-export default function testTodo() {
+function testTodo() {
   const task = new Todo("Prova", "descrizione di prova");
   console.log("Todo creato");
   console.log(task);
@@ -29,7 +30,6 @@ export default function testTodo() {
   task.priority = -5;
   console.log(task.priority);
 
-
   console.log("set priority correctly (number 0)");
   task.priority = 0;
   console.log(task.priority);
@@ -37,6 +37,27 @@ export default function testTodo() {
   console.log("set priority correctly (string 1)");
   task.priority = "1";
   console.log(task.priority);
-
-
 }
+
+function testProject() {
+  const task1 = new Todo("vecchio");
+  task1.date = "2020-12-12";
+
+  const task2 = new Todo("nuovissimo");
+  task2.date = "2024-12-12";
+
+  const task3 = new Todo("nuovo");
+  task3.date = "2024-01-12";
+
+  const task4 = new Todo("medio");
+  task4.date = "2021-03-03";
+
+  const project = new Project("prova");
+  project.addTodo(task1);
+  project.addTodo(task2);
+  project.addTodo(task3);
+  project.addTodo(task4);
+  console.log(project)
+}
+
+export { testTodo, testProject };

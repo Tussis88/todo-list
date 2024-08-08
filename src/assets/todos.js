@@ -6,6 +6,7 @@ export default class Todo {
     this.description = description;
     this.isDone = false;
     this._priority = 2;
+    this._date = new Date("2024-01-01");
   }
 
   taskdone() {

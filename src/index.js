@@ -2,7 +2,7 @@ import "./style.css";
 import Todo from "./assets/todos";
 import Project from "./assets/projects";
 
-import testTodo from "./assets/tests";
+import {testTodo, testProject } from "./assets/tests";
 
 function component() {
   const element = document.createElement("div");
@@ -13,4 +13,5 @@ function component() {
 
 document.body.appendChild(component());
 
-testTodo();
+// testTodo();
+testProject();
