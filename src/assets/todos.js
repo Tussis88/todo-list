@@ -1,11 +1,11 @@
 import { format } from "date-fns";
 
 export default class Todo {
-  constructor(name, description, priority) {
+  constructor(name, description = "") {
     this.name = name;
     this.description = description;
-    this.priority = priority;
     this.isDone = false;
+    this._priority = 2;
   }
 
   taskdone() {
@@ -19,8 +19,18 @@ export default class Todo {
   get date() {
     return this._date;
   }
+  set priority(number) {
+    this._priority = parseInt(
+      isNaN(number) || number < 0 || number > 2 ? 2 : number,
+      10,
+    );
+  }
 
-  get dateFormatted() {
-    return format(this._date, "dd MMM yyyy");
+  get priority() {
+    return this._priority;
   }
 }
+//  THIS SHOULD BE DONE IN DOM
+//   get dateFormatted() {
+//     return format(this._date, "dd MMM yyyy");
+//   }
