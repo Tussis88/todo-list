@@ -1,5 +1,5 @@
 import Todo from "./todos";
-import Project from "./projects";
+import { Project, projectArray } from "./projects";
 
 function testTodo() {
   const task = new Todo("Prova", "descrizione di prova");
@@ -64,4 +64,42 @@ function testProject() {
   // console.log(project);
 }
 
-export { testTodo, testProject };
+
+function testProjectArray() {
+  const task1 = new Todo("vecchio");
+  task1.date = "2020-12-12";
+
+  const task2 = new Todo("nuovissimo");
+  task2.date = "2024-12-12";
+
+  const task3 = new Todo("nuovo");
+  task3.date = "2024-01-12";
+
+  const task4 = new Todo("medio");
+  task4.date = "2021-03-03";
+
+  const project = new Project("prova");
+  project.addTodo(task1);
+  project.addTodo(task2);
+  project.addTodo(task3);
+  project.addTodo(task4);
+
+  const task5 = new Todo("vecchio");
+  task1.date = "2019-12-12";
+
+  const task6 = new Todo("nuovissimo");
+  task2.date = "2022-12-12";
+
+  const task7 = new Todo("nuovo");
+  task3.date = "2022-01-12";
+
+  const project2 = new Project("prova2");
+  project2.addTodo(task5);
+  project2.addTodo(task6);
+  project2.addTodo(task7);
+
+  projectArray.addProject(project);
+  projectArray.addProject(project2);
+  console.log(projectArray.getArray());
+}
+export { testTodo, testProject, testProjectArray };

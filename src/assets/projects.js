@@ -3,7 +3,7 @@ import _ from "lodash";
 
 import Todo from "./todos";
 
-export default class Project {
+class Project {
   constructor(name) {
     this.name = name;
     this.todoArray = [];
@@ -28,7 +28,6 @@ export default class Project {
     if (this.todoArray) {
       for (let i = 0; i < this.todoArray.length; i++) {
         if (_.isEqual(todo, this.todoArray[i])) {
-          console.log("qui");
           this.todoArray.splice(i, 1);
           return true;
         }
@@ -37,3 +36,42 @@ export default class Project {
     return false;
   }
 }
+
+const projectArray = (function () {
+  let array = [];
+
+  const getArray = () => array;
+
+  const resetArray = () => (array = []);
+
+  const saveArray = () => {
+    localStorage.setItem("projectArray", JSON.stringify(array));
+  };
+
+  const loadArray = () => {
+    const storedArray = localStorage.getItem("projectArray");
+    if (storedArray) {
+      array = JSON.parse(storedArray);
+    }
+  };
+
+  const addProject = (project) => {
+    if (!(project instanceof Project)) return;
+    array.push(project);
+    saveArray();
+  };
+
+  const deleteProject = (project) => {
+    for (let i = 0; i < array.length; i++) {
+      if (_.isEqual(project, array[i])) {
+        array.splice(i, 1);
+        saveArray();
+        break;
+      }
+    }
+  };
+
+  return { getArray, resetArray, loadArray, addProject, deleteProject };
+})();
+
+export { Project, projectArray };
