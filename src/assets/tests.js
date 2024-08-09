@@ -57,7 +57,11 @@ function testProject() {
   project.addTodo(task2);
   project.addTodo(task3);
   project.addTodo(task4);
-  console.log(project)
+  console.log(project);
+  //
+  // console.log("cancella 1 elemento");
+  // project.deleteTodo(task1);
+  // console.log(project);
 }
 
 export { testTodo, testProject };
