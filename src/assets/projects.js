@@ -42,7 +42,10 @@ const projectArray = (function () {
 
   const getArray = () => array;
 
-  const resetArray = () => (array = []);
+  const resetArray = () => {
+    array = [];
+    saveArray();
+  };
 
   const saveArray = () => {
     localStorage.setItem("projectArray", JSON.stringify(array));
@@ -51,7 +54,18 @@ const projectArray = (function () {
   const loadArray = () => {
     const storedArray = localStorage.getItem("projectArray");
     if (storedArray) {
-      array = JSON.parse(storedArray);
+      const parsedArray = JSON.parse(storedArray);
+      array = parsedArray.map((projectData) => {
+        const project = new Project(projectData.name);
+        project.todoArray = projectData.todoArray.map((todoData) => {
+          const todo = new Todo(todoData.name, todoData.description);
+          todo.date = todoData._date;
+          todo.priority = todoData._priority;
+          todo.isDone = todoData.isDone;
+          return todo;
+        });
+        return project;
+      });
     }
   };
 
@@ -71,7 +85,14 @@ const projectArray = (function () {
     }
   };
 
-  return { getArray, resetArray, loadArray, addProject, deleteProject };
+  return {
+    getArray,
+    resetArray,
+    saveArray,
+    loadArray,
+    addProject,
+    deleteProject,
+  };
 })();
 
 export { Project, projectArray };
