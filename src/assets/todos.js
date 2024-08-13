@@ -1,5 +1,3 @@
-import { format } from "date-fns";
-
 export default class Todo {
   constructor(name, description = "") {
     this.name = name;
@@ -31,7 +29,3 @@ export default class Todo {
     return this._priority;
   }
 }
-//  THIS SHOULD BE DONE IN DOM
-//   get dateFormatted() {
-//     return format(this._date, "dd MMM yyyy");
-//   }
