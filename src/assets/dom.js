@@ -1,8 +1,9 @@
 import { Project, projectArray } from "./projects";
 import Todo from "./todos";
 import { domTodo } from "./domTodo";
+import DeleteSvg from "./img/delete.svg";
 
-const domLogic = (function () {
+const domLogic = (function() {
   const menuDiv = document.querySelector("#menu");
   const contentDiv = document.querySelector("#content");
   // dialog project creation items
@@ -13,6 +14,11 @@ const domLogic = (function () {
   const dialogTodoCreateDiv = document.querySelector(".dialogTodoCreate");
   const todoForm = document.querySelector(".todoForm");
   const todoCreateButton = document.querySelector("#todoCreate");
+  // svg
+  const deleteBin =new Image();
+  deleteBin.src = DeleteSvg;
+
+  let currentProject = null;
 
   projectCreateButton.addEventListener("click", (e) => {
     e.preventDefault();
@@ -21,7 +27,6 @@ const domLogic = (function () {
     updateMenu();
     dialogProjectDiv.close();
   });
-  let currentProject = null;
 
   todoCreateButton.addEventListener("click", (e) => {
     e.preventDefault();
@@ -41,22 +46,25 @@ const domLogic = (function () {
   const updateMenu = () => {
     menuDiv.textContent = "";
     projectArray.loadArray();
-    console.log(projectArray.getArray());
 
     projectArray.getArray().forEach((project) => {
-      console.log(project);
       const projectDiv = document.createElement("div");
       projectDiv.classList.add("projectLine");
+      if (currentProject && project.name === currentProject.name) {
+        projectDiv.classList.add("selected");
+      }
+
       const projectButton = document.createElement("button");
       projectButton.textContent = project.name;
       projectButton.addEventListener("click", () => {
         currentProject = project;
         updateContentDiv(project);
+        updateMenu();
       });
       projectDiv.appendChild(projectButton);
 
       const deleteProjectButton = document.createElement("button");
-      deleteProjectButton.textContent = "x";
+      deleteProjectButton.appendChild(deleteBin);
       deleteProjectButton.addEventListener("click", () => {
         projectArray.deleteProject(project);
         updateMenu();
