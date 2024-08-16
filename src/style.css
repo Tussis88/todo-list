@@ -1,26 +1,98 @@
+@font-face {
+  font-family: "Inconsolata";
+  src: url("./assets/font/Inconsolata.ttf");
+}
+
+:root {
+  /* Kanagawa color scheme: https://github.com/rebelot/kanagawa.nvim?tab=readme-ov-file#color-palette */
+  --backgroundDefault: #1f1f28;
+  --backgroundLight: #2a2a37;
+  --backgroundLighter: #363646;
+  --foreground: #dcd7ba;
+  --foregroundDark: #c8c093;
+  --blue: #7e9cd8;
+  --violet: #957fb8;
+  --green: #98bb6c;
+  --yellow: #e6c384;
+  --orange: #ffa066;
+  --red: #e46876;
+}
+
 body {
+  font-family: "Inconsolata", monospace;
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-rows: 1fr 5fr;
-  grid-template-columns: 1fr 4fr;
+  grid-template-rows: 1fr 4fr;
+  grid-template-columns: 1fr 5fr;
+  color: var(--foreground);
 }
 
-
 header {
-  background-color: aquamarine;
+  background-color: var(--backgroundLighter);
   grid-column: 1 / 3;
 }
 
+#title {
+  font-size: 4.5em;
+  margin-left: 2ch;
+  color: var(--blue);
+}
+
+/* Side Menu*/
 #menu {
-  background-color: lightgreen;
+  background-color: var(--backgroundLight);
 }
 
+.projectLine {
+  display: flex;
+  justify-content: space-between;
+}
+
+.projectLine:hover {
+  background-color: var(--backgroundLighter);
+}
+
+.selected {
+  background-color: var(--violet);
+}
+
+.selected:hover {
+  background-color: var(--violet);
+}
+
+.projectLine button {
+  font-family: "Inconsolata", monospace;
+  background-color: transparent;
+  border: none;
+  color: var(--foreground);
+  font-size: 1.5em;
+  padding: 1ch;
+}
+
+.deleteProject {
+  border-radius: 2px;
+  margin: 1ch;
+
+  &:hover {
+    background-color: var(--red);
+  }
+}
+.addProject {
+  background-color: transparent;
+  border: 3px solid transparent;
+  color: var(--green);
+  font-size: 4ch;
+  font-weight: 700;
+  text-align: center;
+  width: 100%;
+  &:hover {
+    border-color: var(--green);
+  }
+}
+
+/*Central content*/
 #content {
-  background-color: lightpink;
+  background-color: var(--backgroundDefault);
+  padding: 2ch;
 }
-
-svg {
-  fill: red;
-}
-
