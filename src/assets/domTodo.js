@@ -1,8 +1,11 @@
 import { format } from "date-fns";
-import { projectArray} from "./projects";
+import _ from "lodash";
+import { projectArray } from "./projects";
 import { domLogic } from "./dom";
+import DeleteSvg from "./img/deleteTodo.svg";
 
-function domTodo(todo, project) {
+function domTodo(oldTodo, project) {
+  let todo = _.cloneDeep(oldTodo);
   const card = document.createElement("div");
   switch (todo.priority) {
     case 0:
@@ -33,12 +36,16 @@ function domTodo(todo, project) {
   const isDoneButton = document.createElement("button");
   isDoneButton.textContent = todo.isDone ? "Undo" : "Done";
   isDoneButton.addEventListener("click", () => {
-    if (!todo.isDone) {
-      todo.taskdone();
+    projectArray.getArray().forEach((proj) => {
+      if (_.isEqual(proj, project)) {
+        todo.taskdone();
+        proj.editTodo(oldTodo, todo);
+      }
+    });
+    if (todo.isDone) {
       card.classList.add("done");
       isDoneButton.textContent = "Undo";
     } else {
-      todo.taskdone();
       card.classList.remove("done");
       isDoneButton.textContent = "Done";
     }
@@ -47,13 +54,18 @@ function domTodo(todo, project) {
   card.appendChild(isDoneButton);
 
   const deleteButton = document.createElement("button");
-  deleteButton.textContent = "x";
+  const deleteImg = new Image();
+  deleteImg.src = DeleteSvg;
+  deleteButton.appendChild(deleteImg);
   deleteButton.addEventListener("click", () => {
-    console.log(todo);
-    console.log(project);
-    project.deleteTodo(todo);
-    projectArray.saveArray();
+    projectArray.getArray().forEach((proj) => {
+      if (_.isEqual(proj, project)) {
+        proj.deleteTodo(todo);
+        projectArray.saveArray();
+      }
+    });
     domLogic.updateContentDiv(project);
+    // project.deleteTodo(oldTodo);
   });
   card.appendChild(deleteButton);
 

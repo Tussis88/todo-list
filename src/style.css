@@ -20,5 +20,7 @@ header {
   background-color: lightpink;
 }
 
-
+svg {
+  fill: red;
+}
 

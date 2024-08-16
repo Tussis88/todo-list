@@ -14,10 +14,6 @@ const domLogic = (function() {
   const dialogTodoCreateDiv = document.querySelector(".dialogTodoCreate");
   const todoForm = document.querySelector(".todoForm");
   const todoCreateButton = document.querySelector("#todoCreate");
-  // svg
-  const deleteBin =new Image();
-  deleteBin.src = DeleteSvg;
-
   let currentProject = null;
 
   projectCreateButton.addEventListener("click", (e) => {
@@ -34,12 +30,21 @@ const domLogic = (function() {
     const description = todoForm.description.value;
     const date = todoForm.date.value;
     const priority = todoForm.priority.value;
-    const todo = new Todo(name, description);
-    todo.date = date;
-    todo.priority = priority;
-    currentProject.addTodo(todo);
-    updateContentDiv(currentProject);
+    const newTodo = new Todo(name, description);
+    newTodo.date = date;
+    newTodo.priority = priority;
+
+    projectArray.getArray().forEach((project) => {
+      if (_.isEqual(currentProject, project)) {
+        project.addTodo(newTodo);
+        currentProject = project;
+        updateContentDiv(project);
+      }
+    });
+
     dialogTodoCreateDiv.close();
+    console.log(currentProject);
+    console.log(projectArray.getArray());
     projectArray.saveArray();
   });
 
@@ -64,6 +69,10 @@ const domLogic = (function() {
       projectDiv.appendChild(projectButton);
 
       const deleteProjectButton = document.createElement("button");
+      deleteProjectButton.classList.add("deleteProject");
+
+      const deleteBin = new Image();
+      deleteBin.src = DeleteSvg;
       deleteProjectButton.appendChild(deleteBin);
       deleteProjectButton.addEventListener("click", () => {
         projectArray.deleteProject(project);
