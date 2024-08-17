@@ -20,6 +20,7 @@
   --yellow: #e6c384;
   --orange: #ffa066;
   --red: #e46876;
+  --shadow: 2px 2px 6px rgba(0, 0, 10, 0.1);
 }
 
 body {
@@ -113,6 +114,7 @@ header {
   margin-bottom: 10px;
   padding: 15px;
   background-color: var(--blueDark);
+  box-shadow: var(--shadow);
 }
 
 .done {
@@ -177,6 +179,7 @@ header {
   padding: 5px;
   margin: 0 0 0 auto;
   border-radius: 4px;
+
   &:hover {
     background-color: var(--red);
   }
@@ -191,9 +194,127 @@ header {
   font-weight: 700;
   text-align: center;
   width: 4ch;
+
   &:hover {
     border-color: var(--green);
   }
 }
 
+/* Dialogs*/
 
+dialog::backdrop {
+  background-color: rgba(0, 0, 15, 0.5);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+}
+
+dialog {
+  padding: 20px;
+  border: solid 4px var(--blueDark);
+  background-color: var(--popupBackground);
+  color: var(--foreground);
+  border-radius: 15px;
+}
+
+dialog button {
+  font-family: "Inconsolata", monospace;
+  margin-top: 25px;
+  background-color: transparent;
+  color: var(--green);
+  font-size: 1.2em;
+  font-weight: 400;
+  padding: 5px 10px;
+  border: 1px solid var(--green);
+  border-radius: 4px;
+
+  &:hover {
+    color: var(--popupBackground);
+    background-color: var(--green);
+    border-color: var(--green);
+  }
+}
+
+.dialogProject input {
+  font-family: "Inconsolata", monospace;
+  width: 20em;
+  height: 2em;
+  border-radius: 4px;
+  padding: 0 5px;
+  background-color: var(--backgroundDark);
+  color: var(--foreground);
+  font-size: 1em;
+  border: solid 1px transparent;
+
+  &:focus {
+    border-color: var(--violet);
+    outline: none;
+  }
+}
+
+.titleContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.dialogTodoCreate input {
+  font-family: "Inconsolata", monospace;
+  width: 10em;
+  height: 2em;
+  border-radius: 4px;
+  padding: 0 5px;
+  background-color: var(--backgroundDark);
+  color: var(--foreground);
+  font-size: 1em;
+  border: solid 1px transparent;
+
+  &:focus {
+    border-color: var(--violet);
+    outline: none;
+  }
+}
+
+#todoDate {
+  width: 7em;
+}
+
+.dialogTodoCreate textarea {
+  font-family: "Inconsolata", monospace;
+  border-radius: 4px;
+  padding: 5px;
+  background-color: var(--backgroundDark);
+  color: var(--foreground);
+  font-size: 1em;
+  border: solid 1px transparent;
+
+  &:focus {
+    border-color: var(--violet);
+    outline: none;
+  }
+}
+
+#description {
+  display: grid;
+  gap: 5px;
+}
+
+.selectPriority {
+  margin-top: 15px;
+}
+
+.dialogTodoCreate select {
+  font-family: "Inconsolata", monospace;
+  border-radius: 4px;
+  padding: 5px;
+  background-color: var(--backgroundDark);
+  color: var(--foreground);
+  font-size: 1em;
+  border: solid 1px transparent;
+  -webkit-appearance: none;
+  appearance: none;
+
+  &:focus {
+    border-color: var(--violet);
+    outline: none;
+  }
+}

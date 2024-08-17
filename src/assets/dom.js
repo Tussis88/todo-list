@@ -38,12 +38,12 @@ const domLogic = (function() {
       if (_.isEqual(currentProject, project)) {
         project.addTodo(newTodo);
         currentProject = project;
-        updateContentDiv(project);
       }
     });
 
     dialogTodoCreateDiv.close();
     console.log(projectArray.getArray());
+    updateContentDiv(currentProject);
     projectArray.saveArray();
   });
 

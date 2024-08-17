@@ -28,27 +28,31 @@
 
   <dialog class="dialogTodoCreate">
     <form method="dialog" class="todoForm">
-      <div>
-        <label for="name">Title</label>
-        <input type="text" name="name" required />
+      <div class="titleContainer">
+        <div>
+          <label for="name">Title</label>
+          <input type="text" name="name" required />
+        </div>
+        <div>
+          <label for="date">Date</label>
+          <input id="todoDate" type="date" name="date" required />
+        </div>
       </div>
-      <div>
+      <div id="description">
         <label for="description">Description</label>
-        <textarea rows="4" cols="40" name="description"></textarea>
+        <textarea rows="4" cols="60" name="description"></textarea>
       </div>
-      <div>
-        <label for="date">Date</label>
-        <input type="date" name="date" required />
-      </div>
+      <div class="selectPriority">
+
         <label for="priority">Priority</label>
         <select name="priority">
           <option value="0">high</option>
           <option value="1">mid</option>
           <option value="2" selected>low</option>
         </select>
-      <div>
-        <button id="todoCreate">Create</button>
-      </div>
+        <div>
+          <button id="todoCreate">Create</button>
+        </div>
     </form>
   </dialog>
 </body>

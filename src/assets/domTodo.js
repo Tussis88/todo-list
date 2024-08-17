@@ -4,8 +4,7 @@ import { projectArray } from "./projects";
 import { domLogic } from "./dom";
 import DeleteSvg from "./img/deleteTodo.svg";
 
-function domTodo(oldTodo, project) {
-  let todo = _.cloneDeep(oldTodo);
+function domTodo(todo, project) {
   const card = document.createElement("div");
   card.classList.add("card");
   switch (todo.priority) {
@@ -40,12 +39,7 @@ function domTodo(oldTodo, project) {
   isDoneButton.classList.add("doneButton");
   isDoneButton.textContent = todo.isDone ? "Undo" : "Done";
   isDoneButton.addEventListener("click", () => {
-    projectArray.getArray().forEach((proj) => {
-      if (_.isEqual(proj, project)) {
-        todo.taskdone();
-        proj.editTodo(oldTodo, todo);
-      }
-    });
+    todo.taskdone();
     if (todo.isDone) {
       card.classList.add("done");
       isDoneButton.textContent = "Undo";
@@ -64,14 +58,9 @@ function domTodo(oldTodo, project) {
   deleteImg.src = DeleteSvg;
   deleteButton.appendChild(deleteImg);
   deleteButton.addEventListener("click", () => {
-    projectArray.getArray().forEach((proj) => {
-      if (_.isEqual(proj, project)) {
-        proj.deleteTodo(todo);
-        projectArray.saveArray();
-      }
-    });
+    project.deleteTodo(todo);
+    projectArray.saveArray();
     domLogic.updateContentDiv(project);
-    // project.deleteTodo(oldTodo);
   });
   card.appendChild(deleteButton);
 

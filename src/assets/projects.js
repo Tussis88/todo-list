@@ -35,18 +35,6 @@ class Project {
     }
     return false;
   }
-
-  editTodo(oldTodo, newTodo) {
-    if (!(oldTodo instanceof Todo) || !(newTodo instanceof Todo)) {
-      return false;
-    }
-    for (let i = 0; i < this.todoArray.length; i++) {
-      if (_.isEqual(this.todoArray[i], oldTodo)) {
-        console.log("l'if funziona");
-        this.todoArray[i] = newTodo;
-      }
-    }
-  }
 }
 
 const projectArray = (function () {
