@@ -62,7 +62,7 @@ const domLogic = (function() {
       projectButton.textContent = project.name;
       projectButton.addEventListener("click", () => {
         currentProject = project;
-        updateContentDiv(project);
+        updateContentDiv(currentProject);
         updateMenu();
       });
       projectDiv.appendChild(projectButton);
@@ -86,7 +86,8 @@ const domLogic = (function() {
   const updateContentDiv = (project) => {
     contentDiv.textContent = "";
     project.todoArray.forEach((todo) => {
-      contentDiv.appendChild(domTodo(todo, project));
+      const card = domTodo(todo, project);
+      contentDiv.appendChild(card);
     });
     contentDiv.appendChild(addTodoButton());
   };
