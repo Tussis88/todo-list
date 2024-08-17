@@ -43,7 +43,6 @@ const domLogic = (function() {
     });
 
     dialogTodoCreateDiv.close();
-    console.log(currentProject);
     console.log(projectArray.getArray());
     projectArray.saveArray();
   });

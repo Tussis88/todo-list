@@ -5,11 +5,15 @@
 
 :root {
   /* Kanagawa color scheme: https://github.com/rebelot/kanagawa.nvim?tab=readme-ov-file#color-palette */
+  --backgroundDark: #16161d;
   --backgroundDefault: #1f1f28;
   --backgroundLight: #2a2a37;
   --backgroundLighter: #363646;
+  --popupBackground: #223249;
+  --gray: #727169;
   --foreground: #dcd7ba;
   --foregroundDark: #c8c093;
+  --blueDark: #252535;
   --blue: #7e9cd8;
   --violet: #957fb8;
   --green: #98bb6c;
@@ -71,13 +75,14 @@ header {
 }
 
 .deleteProject {
-  border-radius: 2px;
+  border-radius: 4px;
   margin: 1ch;
 
   &:hover {
     background-color: var(--red);
   }
 }
+
 .addProject {
   background-color: transparent;
   border: 3px solid transparent;
@@ -86,6 +91,7 @@ header {
   font-weight: 700;
   text-align: center;
   width: 100%;
+
   &:hover {
     border-color: var(--green);
   }
@@ -96,3 +102,98 @@ header {
   background-color: var(--backgroundDefault);
   padding: 2ch;
 }
+
+.card {
+  display: grid;
+  grid-template-rows: 2ch 4ch;
+  grid-template-columns: repeat(8, 1fr);
+  border: solid 1px var(--backgroundLight);
+  border-radius: 15px;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 15px;
+  background-color: var(--blueDark);
+}
+
+.done {
+  background-color: var(--backgroundDark);
+  color: var(--gray);
+}
+
+.low {
+  border-left: solid 5px var(--red);
+}
+
+.mid {
+  border-left: solid 5px var(--orange);
+}
+
+.high {
+  border-left: solid 5px var(--green);
+}
+
+.descriptionTodo {
+  grid-row: 2/3;
+  grid-column: 1/9;
+}
+
+.cardTitle {
+  grid-column: 1/6;
+  color: var(--violet);
+  font-size: 3ch;
+}
+
+.done .cardTitle {
+  color: var(--gray);
+}
+
+.dateTodo {
+  grid-column: 6/7;
+}
+
+.doneButton {
+  grid-column: 7/8;
+  font-family: "Inconsolata", monospace;
+  font-size: 2ch;
+  background-color: var(--green);
+  border: none;
+  color: var(--backgroundDefault);
+  width: 6ch;
+  padding: 5px;
+  margin: 0 auto;
+  border-radius: 4px;
+}
+
+.done .doneButton {
+  background-color: var(--red);
+}
+
+.deleteTodo {
+  grid-column: 8/9;
+  background-color: transparent;
+  border: none;
+  color: var(--backgroundDefault);
+  width: 4ch;
+  padding: 5px;
+  margin: 0 0 0 auto;
+  border-radius: 4px;
+  &:hover {
+    background-color: var(--red);
+  }
+}
+
+.addTodo {
+  background-color: transparent;
+  border: 3px solid transparent;
+  border-radius: 4px;
+  color: var(--green);
+  font-size: 4ch;
+  font-weight: 700;
+  text-align: center;
+  width: 4ch;
+  &:hover {
+    border-color: var(--green);
+  }
+}
+
+

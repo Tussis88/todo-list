@@ -7,6 +7,7 @@ import DeleteSvg from "./img/deleteTodo.svg";
 function domTodo(oldTodo, project) {
   let todo = _.cloneDeep(oldTodo);
   const card = document.createElement("div");
+  card.classList.add("card");
   switch (todo.priority) {
     case 0:
       card.classList.add("high");
@@ -18,8 +19,10 @@ function domTodo(oldTodo, project) {
       card.classList.add("low");
       break;
   }
+  if (todo.isDone) card.classList.add("done");
 
   const titleTodo = document.createElement("h3");
+  titleTodo.classList.add("cardTitle");
   titleTodo.textContent = todo.name;
   card.appendChild(titleTodo);
 
@@ -34,6 +37,7 @@ function domTodo(oldTodo, project) {
   card.appendChild(descriptionTodo);
 
   const isDoneButton = document.createElement("button");
+  isDoneButton.classList.add("doneButton");
   isDoneButton.textContent = todo.isDone ? "Undo" : "Done";
   isDoneButton.addEventListener("click", () => {
     projectArray.getArray().forEach((proj) => {
@@ -50,10 +54,12 @@ function domTodo(oldTodo, project) {
       isDoneButton.textContent = "Done";
     }
     projectArray.saveArray();
+    domLogic.updateContentDiv(project);
   });
   card.appendChild(isDoneButton);
 
   const deleteButton = document.createElement("button");
+  deleteButton.classList.add("deleteTodo");
   const deleteImg = new Image();
   deleteImg.src = DeleteSvg;
   deleteButton.appendChild(deleteImg);
