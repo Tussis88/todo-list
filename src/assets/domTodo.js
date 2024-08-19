@@ -48,7 +48,8 @@ function domTodo(todo, project) {
       isDoneButton.textContent = "Done";
     }
     projectArray.saveArray();
-    domLogic.updateContentDiv(project);
+    domLogic.updateMenu();
+    // domLogic.updateContentDiv(project);
   });
   card.appendChild(isDoneButton);
 
@@ -60,7 +61,8 @@ function domTodo(todo, project) {
   deleteButton.addEventListener("click", () => {
     project.deleteTodo(todo);
     projectArray.saveArray();
-    domLogic.updateContentDiv(project);
+    domLogic.updateMenu();
+    // domLogic.updateContentDiv(project);
   });
   card.appendChild(deleteButton);
 

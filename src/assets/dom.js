@@ -62,7 +62,7 @@ const domLogic = (function() {
       projectButton.textContent = project.name;
       projectButton.addEventListener("click", () => {
         currentProject = project;
-        updateContentDiv(currentProject);
+        updateContentDiv(project);
         updateMenu();
       });
       projectDiv.appendChild(projectButton);
