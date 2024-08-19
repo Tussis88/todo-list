@@ -48,8 +48,8 @@ function domTodo(todo, project) {
       isDoneButton.textContent = "Done";
     }
     projectArray.saveArray();
-    domLogic.updateMenu();
-    // domLogic.updateContentDiv(project);
+    // domLogic.updateMenu();
+    domLogic.updateContentDiv(project);
   });
   card.appendChild(isDoneButton);
 
@@ -59,10 +59,13 @@ function domTodo(todo, project) {
   deleteImg.src = DeleteSvg;
   deleteButton.appendChild(deleteImg);
   deleteButton.addEventListener("click", () => {
+    console.log(project);
+    console.log(todo);
     project.deleteTodo(todo);
+    console.log(project);
     projectArray.saveArray();
-    domLogic.updateMenu();
-    // domLogic.updateContentDiv(project);
+    // domLogic.updateMenu();
+    domLogic.updateContentDiv(project);
   });
   card.appendChild(deleteButton);
 

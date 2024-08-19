@@ -43,13 +43,13 @@ const domLogic = (function() {
 
     dialogTodoCreateDiv.close();
     console.log(projectArray.getArray());
-    updateContentDiv(currentProject);
     projectArray.saveArray();
+    updateContentDiv(currentProject);
   });
 
   const updateMenu = () => {
     menuDiv.textContent = "";
-    projectArray.loadArray();
+    // projectArray.loadArray();
 
     projectArray.getArray().forEach((project) => {
       const projectDiv = document.createElement("div");
@@ -115,6 +115,8 @@ const domLogic = (function() {
 
   const dialogTodoCreation = () => {
     dialogTodoCreateDiv.showModal();
+    todoForm.name.value = "";
+    todoForm.description.value = "";
   };
   return { updateMenu, updateContentDiv };
 })();

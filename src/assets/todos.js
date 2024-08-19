@@ -13,6 +13,10 @@ export default class Todo {
 
   set date(stringDate) {
     this._date = new Date(stringDate);
+    if (isNaN(this._date)) {
+      alert("Invalid date. Date will be set to my birthday");
+      this._date = new Date("1988-06-30");
+    }
   }
 
   get date() {

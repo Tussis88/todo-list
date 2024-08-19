@@ -28,9 +28,10 @@ body {
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-rows: 1fr 4fr;
+  grid-template-rows: 1fr 6fr;
   grid-template-columns: 1fr 5fr;
   color: var(--foreground);
+  height: 100vh;
 }
 
 header {
@@ -40,6 +41,7 @@ header {
 
 #title {
   font-size: 4.5em;
+  margin: 0.2em;
   margin-left: 2ch;
   color: var(--blue);
 }
@@ -107,7 +109,7 @@ header {
 .card {
   display: grid;
   grid-template-rows: 2ch 4ch;
-  grid-template-columns: repeat(8, 1fr);
+  grid-template-columns: repeat(10, 1fr);
   border: solid 1px var(--backgroundLight);
   border-radius: 15px;
   align-items: center;
@@ -136,11 +138,11 @@ header {
 
 .descriptionTodo {
   grid-row: 2/3;
-  grid-column: 1/9;
+  grid-column: 1/11;
 }
 
 .cardTitle {
-  grid-column: 1/6;
+  grid-column: 1/8;
   color: var(--violet);
   font-size: 3ch;
 }
@@ -150,11 +152,11 @@ header {
 }
 
 .dateTodo {
-  grid-column: 6/7;
+  grid-column: 8/9;
 }
 
 .doneButton {
-  grid-column: 7/8;
+  grid-column: 9/10;
   font-family: "Inconsolata", monospace;
   font-size: 2ch;
   background-color: var(--green);
@@ -162,7 +164,7 @@ header {
   color: var(--backgroundDefault);
   width: 6ch;
   padding: 5px;
-  margin: 0 auto;
+  margin: 0 0 0 auto;
   border-radius: 4px;
 }
 
@@ -171,7 +173,7 @@ header {
 }
 
 .deleteTodo {
-  grid-column: 8/9;
+  grid-column: 10/11;
   background-color: transparent;
   border: none;
   color: var(--backgroundDefault);
